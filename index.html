@@ -4,26 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DutraOps</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Fundo com partículas -->
   <div id="particles-js"></div>
 
-  <header>
-    <div class="logo neon">🚀 DutraOps</div>
-  </header>
+  <!-- Conteúdo centralizado -->
+  <div class="container">
+    <header>
+      <div class="logo neon">🚀 DutraOps</div>
+    </header>
 
-  <main>
-    <h1 id="typing-text" class="neon"></h1>
-    <p class="fade-in">Em breve, novidades para compartilhar conhecimento!</p>
-    <a href="mailto:ivandutradesouzaa@gmail.com" class="btn glow">Entre em contato</a>
-  </main>
+    <main>
+      <h1 id="typing-text" class="neon"></h1>
+      <p class="fade-in">Em breve, novidades...!</p>
+      <a href="mailto:ivandutradesouzaa@gmail.com" class="btn glow">Entre em contato</a>
+    </main>
+  </div>
 
+  <!-- Rodapé -->
   <footer class="fade-in">
     <p>&copy; 2025 DutraOps. Todos os direitos reservados.</p>
   </footer>
 
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
     // Efeito de digitação
@@ -38,7 +44,7 @@
     }
     window.onload = type;
 
-    // Partículas de fundo
+    // Configuração das partículas
     particlesJS("particles-js", {
       "particles": {
         "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
