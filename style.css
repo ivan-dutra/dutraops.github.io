@@ -1,106 +1,98 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body {
-    font-family: 'Orbitron', sans-serif;
-    background: linear-gradient(to right, #000000, #0f2027, #203a43, #2c5364);
-    color: #ffffff;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden;
-    position: relative;
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: 'Orbitron', sans-serif;
+  overflow: hidden;
+  position: relative;
+  background-color: #000;
+  color: white;
 }
 
-.overlay {
-    position: absolute;
-    inset: 0;
-    background-image: url('https://images.unsplash.com/photo-1581093588401-9a9c9fa62b4b?auto=format&fit=crop&w=1920&q=80');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.05;
-    z-index: 0;
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
 header, main, footer {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
+  text-align: center;
 }
 
 header {
-    padding: 20px;
-    text-align: center;
+  padding: 30px 0;
 }
 
 .logo {
-    font-size: 2.5rem;
-    font-weight: bold;
-    letter-spacing: 2px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #00f7ff;
+  text-shadow:
+    0 0 5px #00f7ff,
+    0 0 10px #00f7ff,
+    0 0 20px #00f7ff;
 }
 
 main {
-    text-align: center;
-    padding: 40px 20px;
+  padding: 40px 20px;
 }
 
 main h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    min-height: 48px;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  min-height: 48px;
 }
 
 main p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    color: #ccc;
-    opacity: 0.8;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #ccc;
 }
 
 footer {
-    text-align: center;
-    padding: 10px;
-    font-size: 0.9rem;
-    background-color: rgba(0, 0, 0, 0.15);
+  padding: 15px;
+  background-color: rgba(0,0,0,0.5);
 }
 
-/* Efeitos visuais */
 .neon {
-    color: #00f7ff;
-    text-shadow:
-        0 0 5px #00f7ff,
-        0 0 10px #00f7ff,
-        0 0 20px #00f7ff,
-        0 0 40px #00f7ff;
+  color: #00f7ff;
+  text-shadow:
+    0 0 5px #00f7ff,
+    0 0 10px #00f7ff,
+    0 0 20px #00f7ff;
 }
 
 .btn {
-    background-color: transparent;
-    border: 2px solid #00f7ff;
-    padding: 12px 24px;
-    color: #00f7ff;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 8px #00f7ff88;
+  background-color: transparent;
+  border: 2px solid #00f7ff;
+  padding: 12px 24px;
+  color: #00f7ff;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px #00f7ff88;
 }
 
 .btn:hover {
-    background-color: #00f7ff;
-    color: #000;
-    box-shadow: 0 0 20px #00f7ff;
+  background-color: #00f7ff;
+  color: #000;
+  box-shadow: 0 0 20px #00f7ff;
 }
 
-/* Fade-in animation */
 .fade-in {
-    animation: fadeIn 1.6s ease-in-out;
+  animation: fadeIn 1.6s ease-in-out;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
