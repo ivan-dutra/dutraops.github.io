@@ -5,21 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DutraOps</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="overlay"></div>
+
     <header>
-        <div class="logo">🚀 DutraOps</div>
+        <div class="logo neon">🚀 DutraOps</div>
     </header>
 
     <main>
-        <h1>Projeto em construção</h1>
-        <p>Em breve, novidades para compartilhar conhecimento!</p>
-        <a href="mailto:ivandutradesouzaa@gmail.com" class="btn">Entre em contato</a>
+        <h1 id="typing-text" class="neon"></h1>
+        <p class="fade-in">Em breve, novidades para compartilhar conhecimento!</p>
+        <a href="mailto:ivandutradesouzaa@gmail.com" class="btn glow">Entre em contato</a>
     </main>
 
-    <footer>
+    <footer class="fade-in">
         <p>&copy; 2025 DutraOps. Todos os direitos reservados.</p>
     </footer>
+
+    <script>
+        const text = "Projeto em construção...";
+        let index = 0;
+        const typingText = document.getElementById("typing-text");
+
+        function type() {
+            if (index < text.length) {
+                typingText.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(type, 80);
+            }
+        }
+
+        window.onload = type;
+    </script>
 </body>
 </html>
