@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    color: #ffffff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.08;
+    z-index: 0;
+}
+
+header {
+    padding: 20px;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #00d9ff;
+    letter-spacing: 1px;
+}
+
+main {
+    text-align: center;
+    padding: 40px 20px;
+    z-index: 1;
+    position: relative;
+}
+
+main h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+main p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #ccc;
+}
+
+.btn {
+    background-color: #00d9ff;
+    padding: 10px 20px;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #00b7d4;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    position: relative;
+}
