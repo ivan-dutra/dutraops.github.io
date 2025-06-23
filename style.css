@@ -1,3 +1,26 @@
+/* Topo fixo com nome */
+.top-header {
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Centralização do conteúdo abaixo do topo */
+.container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  z-index: 1;
+  position: relative;
+  padding: 60px 20px 20px 20px; /* espaçamento maior no topo */
+}
 * {
   margin: 0;
   padding: 0;
