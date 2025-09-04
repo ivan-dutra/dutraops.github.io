@@ -1,81 +1,128 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta name="description" content="DutraOps é um projeto tecnológico voltado ao compartilhamento de conhecimento e soluções inovadoras. Em breve novidades!">
-  <meta name="robots" content="index, follow">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DutraOps</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DutraOps — Projeto em construção</title>
+  <meta name="description" content="Base tecnológica em desenvolvimento." />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta property="og:title" content="DutraOps — Projeto em construção" />
+  <meta property="og:description" content="Plataforma tecnológica em preparação." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og-image.png" />
+  <meta name="theme-color" content="#0ff" />
+  <style>
+    :root {
+      --bg: #050607;
+      --bg-2: #0b0f15;
+      --neon: #00F5FF;
+      --muted: #8899aa;
+      --white: #e6f7ff;
+    }
+    * { box-sizing: border-box; }
+    body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', Roboto, sans-serif; background: linear-gradient(160deg, var(--bg-2), var(--bg)); color: var(--white); overflow: hidden; }
+    canvas { position: fixed; inset: 0; z-index: 0; }
+    .wrap { position: relative; z-index: 2; display: grid; place-items: center; min-height: 100vh; text-align: center; padding: 20px; }
+    .card { background: rgba(10,15,20,0.55); border: 1px solid rgba(0,245,255,0.25); border-radius: 18px; padding: 40px; backdrop-filter: blur(16px); box-shadow: 0 0 30px rgba(0,245,255,0.12), 0 0 80px rgba(0,245,255,0.08) inset; max-width: 720px; }
+    .brand { display: flex; justify-content: flex-start; align-items: center; gap: 14px; margin-bottom: 12px; }
+    h1 { margin: 0; font-size: clamp(28px, 5vw, 42px); background: linear-gradient(90deg, var(--white), var(--neon)); -webkit-background-clip: text; color: transparent; letter-spacing: 1px; font-weight: 700; text-shadow: 0 0 18px rgba(0,245,255,0.25); }
+    .logo svg { width: 36px; height: 36px; fill: var(--neon); filter: drop-shadow(0 0 6px rgba(0,245,255,.6)); }
+    .actions { margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .btn { display: inline-block; padding: 12px 22px; border-radius: 10px; border: 1px solid rgba(0,245,255,0.4); background: rgba(0,245,255,0.1); color: var(--white); text-decoration: none; font-weight: 600; letter-spacing: .4px; transition: all .2s ease; box-shadow: 0 0 20px rgba(0,245,255,0.08) inset; }
+    .btn:hover { background: rgba(0,245,255,0.2); box-shadow: 0 0 36px rgba(0,245,255,0.25); }
+    .footer { margin-top: 24px; font-size: 12px; color: var(--muted); text-align: center; }
+    .footer a { color: var(--muted); text-decoration: none; margin: 0 6px; }
+    .footer a:hover { color: var(--neon); }
+    dialog { border:none; border-radius:16px; max-width:520px; width:92vw; padding:0; background:rgba(10,15,20,.85); color:var(--white); backdrop-filter: blur(14px); }
+    dialog form { margin:0; padding:22px 22px 18px; }
+    dialog h3 { margin:0 0 12px; font-size:20px; }
+    dialog p { margin:0 0 16px; color:#a7c8d1; font-size:14px; }
+    dialog input { flex:1 1 220px; padding:12px 14px; border-radius:12px; border:1px solid rgba(0,245,255,.28); background:rgba(7,10,18,.6); color:var(--white); }
+    dialog button { margin-top:8px; }
+  </style>
 </head>
 <body>
-  <!-- Partículas de fundo -->
-  <div id="particles-js"></div>
+  <canvas id="starfield"></canvas>
+  <canvas id="grid"></canvas>
+  
+  <main class="wrap">
+    <section class="card">
+      <div class="brand">
+        <div class="logo">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="50,10 90,90 10,90"/>
+          </svg>
+        </div>
+        <h1>DutraOps</h1>
+      </div>
+      <div class="actions">
+        <button class="btn" id="notifyBtn">Avisa-me</button>
+        <a href="mailto:contato@dutraops.com.br" class="btn">Entrar em contato</a>
+      </div>
+      <footer class="footer">
+        © <span id="year"></span> DutraOps. Todos os direitos reservados.<br>
+        <a href="#">Política de privacidade</a> | <a href="#">Termos</a>
+      </footer>
+    </section>
+  </main>
 
-  <!-- Nome fixo no topo -->
-  <header class="top-header">
-    <div class="logo neon">🛠️ DutraOps</div>
-  </header>
+  <dialog id="notifyDialog">
+    <form method="dialog">
+      <h3>Quero ser avisado</h3>
+      <p>Deixe seu e-mail e avisaremos quando a primeira versão pública sair.</p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <input id="emailInput" type="email" placeholder="voce@exemplo.com" required>
+        <button class="btn" value="default">Salvar</button>
+        <button class="btn" value="cancel">Fechar</button>
+      </div>
+      <p id="saveMsg" style="margin:12px 4px 0; font-size:12px; color:#7fd7db; display:none;">E-mail salvo com sucesso.</p>
+    </form>
+  </dialog>
 
-  <!-- Conteúdo central -->
-  <div class="container">
-    <main>
-      <h1 id="typing-text" class="neon"></h1>
-      <p class="fade-in">Coming Soon...</p>
-      <a href="mailto:ivandutradesouzaa@gmail.com" class="btn glow">Entre em contato</a>
-    </main>
-  </div>
-
-  <!-- Rodapé -->
-  <footer class="fade-in">
-    <p>&copy; 2025 DutraOps. Todos os direitos reservados.</p>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    // Efeito de digitação
-    const text = "Projeto em construção...";
-    let i = 0;
-    function type() {
-      if (i < text.length) {
-        document.getElementById("typing-text").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(type, 80);
-      }
-    }
-    window.onload = type;
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Configuração das partículas
-    particlesJS("particles-js", {
-      "particles": {
-        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-        "color": { "value": "#00f7ff" },
-        "shape": { "type": "circle" },
-        "opacity": { "value": 0.5 },
-        "size": { "value": 3 },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": "#00f7ff",
-          "opacity": 0.4,
-          "width": 1
-        },
-        "move": { "enable": true, "speed": 2 }
-      },
-      "interactivity": {
-        "events": {
-          "onhover": { "enable": true, "mode": "repulse" },
-          "onclick": { "enable": true, "mode": "push" }
-        },
-        "modes": {
-          "repulse": { "distance": 100 },
-          "push": { "particles_nb": 4 }
-        }
-      },
-      "retina_detect": true
-    });
+    // Starfield
+    (function starfield(){
+      const canvas=document.getElementById('starfield'); const ctx=canvas.getContext('2d');
+      let w,h,stars=[]; const dpr=window.devicePixelRatio||1;
+      function resize(){ w=canvas.width=innerWidth*dpr; h=canvas.height=innerHeight*dpr; canvas.style.width=innerWidth+'px'; canvas.style.height=innerHeight+'px'; stars=Array.from({length:120},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.5+0.5})); }
+      resize(); addEventListener('resize',resize);
+      function draw(){ ctx.clearRect(0,0,w,h); ctx.fillStyle='#00F5FF'; for(const s of stars){ ctx.globalAlpha=Math.random()*0.8+0.2; ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill(); } requestAnimationFrame(draw); }
+      draw();
+    })();
+
+    // Net connections
+    (function net(){
+      const canvas=document.getElementById('grid'); const ctx=canvas.getContext('2d');
+      let w,h,pts=[]; const dpr=window.devicePixelRatio||1;
+      function resize(){ w=canvas.width=innerWidth*dpr; h=canvas.height=innerHeight*dpr; canvas.style.width=innerWidth+'px'; canvas.style.height=innerHeight+'px'; pts=Array.from({length:40},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6})); }
+      resize(); addEventListener('resize',resize);
+      function draw(){ ctx.clearRect(0,0,w,h); for(const p of pts){ p.x+=p.vx; p.y+=p.vy; if(p.x<0||p.x>w) p.vx*=-1; if(p.y<0||p.y>h) p.vy*=-1; ctx.fillStyle='rgba(0,245,255,.6)'; ctx.beginPath(); ctx.arc(p.x,p.y,2*dpr,0,Math.PI*2); ctx.fill(); }
+        for(let i=0;i<pts.length;i++){ for(let j=i+1;j<pts.length;j++){ const a=pts[i],b=pts[j],dx=a.x-b.x,dy=a.y-b.y,dist=dx*dx+dy*dy; if(dist<180*180){ ctx.strokeStyle='rgba(0,245,255,'+(1-dist**0.5/180)+')'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); }}} requestAnimationFrame(draw);} draw(); })();
+
+    // Dialog salvar email
+    (function dialog(){
+      const dlg=document.getElementById('notifyDialog');
+      const btn=document.getElementById('notifyBtn');
+      const input=document.getElementById('emailInput');
+      const save=document.getElementById('saveMsg');
+      btn.addEventListener('click',()=>dlg.showModal());
+      dlg.addEventListener('close',()=>{ save.style.display='none'; input.value=''; });
+      dlg.addEventListener('submit',(e)=>{
+        e.preventDefault();
+        const email=input.value.trim();
+        if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+        try{
+          const key='dutraops_waitlist';
+          const list=JSON.parse(localStorage.getItem(key)||'[]');
+          if(!list.includes(email)) list.push(email);
+          localStorage.setItem(key,JSON.stringify(list));
+          save.style.display='block';
+          setTimeout(()=>{ dlg.close(); },900);
+        }catch(err){console.warn(err)}
+      });
+    })();
   </script>
 </body>
 </html>
